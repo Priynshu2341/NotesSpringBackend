@@ -1,14 +1,17 @@
 package com.example.main.repository;
 
 import com.example.main.model.Notes;
-import com.example.main.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface NotesRepository extends JpaRepository<Notes, Long> {
+public interface NotesRepository extends MongoRepository<Notes, String> {
 
 
-   List<Notes> findByUser(User user);
+    List<Notes> findByUserId(String username);
+
+
+    Page<Notes> findByUserId(String id , Pageable pageable);
 }

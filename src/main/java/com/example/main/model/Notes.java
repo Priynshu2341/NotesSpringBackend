@@ -3,22 +3,20 @@ package com.example.main.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Data
-@Entity(name = "Notes")
+@Document(collection = "Notes")
+
 public class Notes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String title;
-    private String content;
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    private String description;
     private LocalDateTime date;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @DBRef
     private User user;
 }

@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
     }
 
     // ✅ Handle JWT errors
-    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class, SignatureException.class})
+    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class,})
     public ResponseEntity<Map<String, Object>> handleJwtErrors(RuntimeException ex) {
         return buildErrorResponse("Invalid or expired JWT token", HttpStatus.UNAUTHORIZED);
     }
